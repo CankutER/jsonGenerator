@@ -18,18 +18,21 @@ public class App
         File jsonFile=new File("randomJson.json");
         if(jsonFile.exists()) jsonFile.delete();
         try {
+            int counter=1;
             BufferedWriter writer = new BufferedWriter(new FileWriter(jsonFile, true));
             writer.write("{\"defaultContent\":[\n" +
-                    "\t{\"eventUuid\":\"<random>\"},\n" +
+                    "\t{\"eventUuid"+counter+"\":\"string no:"+counter+"\"},\n" +
                     "\n"
                     );
+            counter++;
             while(jsonFile.length()<200000000){
-                writer.write("\t{\"eventUuid\":\"<random>\"},\n" +
+                writer.write("\t{\"eventUuid"+counter+"\":\"string no:"+counter+"\"},\n" +
                         "\n");
+                counter++;
             }
             writer.write("]}");
             writer.close();
-            System.out.println("file creater");
+            System.out.println("file created");
             System.out.println(jsonFile.getAbsolutePath());
         } catch (IOException exc){
             System.out.println("Could not write");
